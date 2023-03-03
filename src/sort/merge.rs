@@ -1,6 +1,6 @@
 use std::cmp::Ord;
 
-fn merge_sort<T: Ord + Clone>(arg: &Vec<T>) -> Vec<T> {
+pub fn merge_sort<T: Ord + Clone>(arg: &Vec<T>) -> Vec<T> {
     if arg.len() == 1 {
         return arg.clone();
     }
