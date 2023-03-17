@@ -10,8 +10,6 @@ pub fn bubble_sort<T: Ord>(arg: &mut Vec<T>) {
 
 #[cfg(test)]
 mod test {
-    use std::vec;
-
     use super::*;
 
     #[test]
