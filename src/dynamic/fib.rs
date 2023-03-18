@@ -1,16 +1,16 @@
-use std::{cell::RefCell, collections::HashMap};
+use std::{collections::HashMap};
 
-pub fn dynamic_fibonacci(n: u128, memo: &RefCell<HashMap<u128, u128>>) -> u128 {
+pub fn dynamic_fibonacci(n: u128, memo: &mut HashMap<u128, u128>) -> u128 {
     if n <= 2 {
         return 1;
     }
 
-    if let Some(v) = memo.borrow().get(&n) {
+    if let Some(v) = memo.get(&n) {
         return *v;
     }
 
-    let res = dynamic_fibonacci(n - 1, &memo) + dynamic_fibonacci(n - 2, &memo);
-    memo.borrow_mut().insert(n, res);
+    let res = dynamic_fibonacci(n - 1, memo) + dynamic_fibonacci(n - 2, memo);
+    memo.insert(n, res);
     return res;
 }
 
@@ -20,9 +20,9 @@ mod test {
 
     #[test]
     fn dynamic_fibonacci_works() {
-        let memo = RefCell::new(HashMap::new());
+        let mut memo = HashMap::new();
 
-        assert_eq!(12586269025, dynamic_fibonacci(50, &memo));
+        assert_eq!(12586269025, dynamic_fibonacci(50, &mut memo));
     }
 }
 
